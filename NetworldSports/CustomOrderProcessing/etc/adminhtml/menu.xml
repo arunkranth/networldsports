@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="NetworldSports_CustomOrderProcessing::main"
+             title="Custom Order Processing"
+             translate="title"
+             module="NetworldSports_CustomOrderProcessing"
+             parent="Magento_Sales::sales"
+             sortOrder="100"
+             resource="NetworldSports_CustomOrderProcessing::main"/>
+        <add id="NetworldSports_CustomOrderProcessing::status"
+             title="Custom Order Statuses"
+             translate="title"
+             module="NetworldSports_CustomOrderProcessing"
+             parent="NetworldSports_CustomOrderProcessing::main"
+             sortOrder="10"
+             action="customorderprocessing/status/index"
+             resource="NetworldSports_CustomOrderProcessing::main"/>
+        <add id="NetworldSports_CustomOrderProcessing::log"
+             title="Order Status Change Logs"
+             translate="title"
+             module="NetworldSports_CustomOrderProcessing"
+             parent="NetworldSports_CustomOrderProcessing::main"
+             sortOrder="20"
+             action="customorderprocessing/log/index"
+             resource="NetworldSports_CustomOrderProcessing::log"/>
+    </menu>
+</config>

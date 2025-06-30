@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">customorderprocessing_log_listing.customorderprocessing_log_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>customorderprocessing_log_listing_columns</spinner>
+        <deps>
+            <dep>customorderprocessing_log_listing.customorderprocessing_log_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="customorderprocessing_log_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">log_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>NetworldSports_CustomOrderProcessing::log</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"
+                      name="customorderprocessing_log_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>log_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="customorderprocessing_log_listing_columns">
+        <column name="log_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Log ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="order_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Order ID</label>
+            </settings>
+        </column>
+        <column name="old_status" class="NetworldSports\CustomOrderProcessing\Ui\Component\Listing\Column\StatusLabel">
+            <settings>
+                <filter>select</filter>
+                <options class="NetworldSports\CustomOrderProcessing\Model\Source\StatusOptions"/>
+                <dataType>select</dataType>
+                <label translate="true">Old Status</label>
+            </settings>
+        </column>
+        <column name="new_status" class="NetworldSports\CustomOrderProcessing\Ui\Component\Listing\Column\StatusLabel">
+            <settings>
+                <filter>select</filter>
+                <options class="NetworldSports\CustomOrderProcessing\Model\Source\StatusOptions"/>
+                <dataType>select</dataType>
+                <label translate="true">New Status</label>
+            </settings>
+        </column>
+        <column name="changed_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Changed At</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

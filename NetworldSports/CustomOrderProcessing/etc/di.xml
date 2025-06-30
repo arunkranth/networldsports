@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Preferences -->
+    <preference for="NetworldSports\CustomOrderProcessing\Api\Data\CustomOrderStatusInterface"
+                type="NetworldSports\CustomOrderProcessing\Model\CustomOrderStatus"/>
+    <preference for="NetworldSports\CustomOrderProcessing\Api\Data\CustomOrderStatusSearchResultsInterface"
+                type="NetworldSports\CustomOrderProcessing\Model\CustomOrderStatusSearchResults"/>
+    <preference for="NetworldSports\CustomOrderProcessing\Api\CustomOrderStatusRepositoryInterface"
+                type="NetworldSports\CustomOrderProcessing\Model\CustomOrderStatusRepository"/>
+
+    <preference for="NetworldSports\CustomOrderProcessing\Api\Data\OrderStatusLogInterface"
+                type="NetworldSports\CustomOrderProcessing\Model\OrderStatusLog"/>
+    <preference for="NetworldSports\CustomOrderProcessing\Api\Data\OrderStatusLogSearchResultsInterface"
+                type="NetworldSports\CustomOrderProcessing\Model\OrderStatusLogSearchResults"/>
+    <preference for="NetworldSports\CustomOrderProcessing\Api\OrderStatusLogRepositoryInterface"
+                type="NetworldSports\CustomOrderProcessing\Model\OrderStatusLogRepository"/>
+
+    <preference for="NetworldSports\CustomOrderProcessing\Api\StatusManagementInterface"
+                type="NetworldSports\CustomOrderProcessing\Model\Api\StatusManagement"/>
+
+    <!-- Virtual Types -->
+    <virtualType name="NetworldSports\CustomOrderProcessing\Model\ResourceModel\CustomOrderStatus\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">networldsports_custom_order_status</argument>
+            <argument name="resourceModel" xsi:type="string">
+                NetworldSports\CustomOrderProcessing\Model\ResourceModel\CustomOrderStatus
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="NetworldSports\CustomOrderProcessing\Model\ResourceModel\OrderStatusLog\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">networldsports_order_status_log</argument>
+            <argument name="resourceModel" xsi:type="string">
+                NetworldSports\CustomOrderProcessing\Model\ResourceModel\OrderStatusLog
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- UI Component Data Providers -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="customorderprocessing_status_listing_data_source" xsi:type="string">
+                    NetworldSports\CustomOrderProcessing\Model\ResourceModel\CustomOrderStatus\Grid\Collection
+                </item>
+                <item name="customorderprocessing_log_listing_data_source" xsi:type="string">
+                    NetworldSports\CustomOrderProcessing\Model\ResourceModel\OrderStatusLog\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Plugins -->
+    <type name="Magento\Sales\Model\Order\Config">
+        <plugin name="networldsports_customorderprocessing_config_plugin"
+                type="NetworldSports\CustomOrderProcessing\Plugin\Order\ConfigPlugin"
+                sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="networldsports_customorderprocessing_order_repository_plugin"
+                type="NetworldSports\CustomOrderProcessing\Plugin\Sales\OrderRepositoryPlugin"
+                sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Sales\Model\Order">
+        <plugin name="networldsports_customorderprocessing_order_plugin"
+                type="NetworldSports\CustomOrderProcessing\Plugin\Sales\OrderPlugin"
+                sortOrder="10"/>
+    </type>
+
+</config>

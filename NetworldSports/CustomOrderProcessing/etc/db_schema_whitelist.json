@@ -1,0 +1,36 @@
+{
+    "networldsports_custom_order_status": {
+        "column": {
+            "status_id": true,
+            "status_name": true,
+            "is_enabled": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "NETWORLDSPORTS_CUSTOM_ORDER_STATUS_NAME": true
+        },
+        "index": {
+            "NETWORLDSPORTS_CUSTOM_ORDER_STATUS_IS_ENABLED": true
+        }
+    },
+    "networldsports_order_status_log": {
+        "column": {
+            "log_id": true,
+            "order_id": true,
+            "old_status": true,
+            "new_status": true,
+            "changed_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "NETWORLDSPORTS_ORDER_STATUS_LOG_ORDER_ID_SALES_ORDER_ENTITY_ID": true
+        },
+        "index": {
+            "NETWORLDSPORTS_ORDER_STATUS_LOG_ORDER_ID": true,
+            "NETWORLDSPORTS_ORDER_STATUS_LOG_OLD_STATUS": true,
+            "NETWORLDSPORTS_ORDER_STATUS_LOG_NEW_STATUS": true
+        }
+    }
+}

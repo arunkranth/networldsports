@@ -1,0 +1,46 @@
+<?php
+/**
+ * Copyright © NetworldSports All rights reserved.
+ */
+declare(strict_types=1);
+
+namespace NetworldSports\CustomOrderProcessing\Model\ResourceModel\OrderStatusLog;
+
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
+use NetworldSports\CustomOrderProcessing\Model\OrderStatusLog;
+use NetworldSports\CustomOrderProcessing\Model\ResourceModel\OrderStatusLog as ResourceModel;
+
+/**
+ * Order Status Log Collection
+ */
+class Collection extends AbstractCollection
+{
+    /**
+     * @var string
+     */
+    protected $_idFieldName = 'log_id';
+
+    /**
+     * Event prefix
+     *
+     * @var string
+     */
+    protected $_eventPrefix = 'networldsports_order_status_log_collection';
+
+    /**
+     * Event object
+     *
+     * @var string
+     */
+    protected $_eventObject = 'order_status_log_collection';
+
+    /**
+     * Define resource model
+     *
+     * @return void
+     */
+    protected function _construct()
+    {
+        $this->_init(OrderStatusLog::class, ResourceModel::class);
+    }
+}

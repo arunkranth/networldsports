@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="networldsports_custom_order_status" resource="default" engine="innodb"
+           comment="Custom Order Status Table">
+        <column xsi:type="int" name="status_id" padding="10" unsigned="true" nullable="false"
+                identity="true" comment="Status ID"/>
+        <column xsi:type="varchar" name="status_name" nullable="false" length="255"
+                comment="Status Name"/>
+        <column xsi:type="smallint" name="is_enabled" padding="5" unsigned="true"
+                nullable="false" default="1" comment="Is Enabled"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false"
+                default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false"
+                default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="status_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="NETWORLDSPORTS_CUSTOM_ORDER_STATUS_NAME">
+            <column name="status_name"/>
+        </constraint>
+        <index referenceId="NETWORLDSPORTS_CUSTOM_ORDER_STATUS_IS_ENABLED" indexType="btree">
+            <column name="is_enabled"/>
+        </index>
+    </table>
+
+    <table name="networldsports_order_status_log" resource="default" engine="innodb"
+           comment="Order Status Change Log">
+        <column xsi:type="int" name="log_id" padding="10" unsigned="true" nullable="false"
+                identity="true" comment="Log ID"/>
+        <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false"
+                comment="Order ID"/>
+        <column xsi:type="varchar" name="old_status" nullable="true" length="255"
+                comment="Old Status"/>
+        <column xsi:type="varchar" name="new_status" nullable="false" length="255"
+                comment="New Status"/>
+        <column xsi:type="timestamp" name="changed_at" on_update="false" nullable="false"
+                default="CURRENT_TIMESTAMP" comment="Changed At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="log_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="NETWORLDSPORTS_ORDER_STATUS_LOG_ORDER_ID_SALES_ORDER_ENTITY_ID"
+                    table="networldsports_order_status_log" column="order_id"
+                    referenceTable="sales_order" referenceColumn="entity_id"/>
+        <index referenceId="NETWORLDSPORTS_ORDER_STATUS_LOG_ORDER_ID" indexType="btree">
+            <column name="order_id"/>
+        </index>
+        <index referenceId="NETWORLDSPORTS_ORDER_STATUS_LOG_OLD_STATUS" indexType="btree">
+            <column name="old_status"/>
+        </index>
+        <index referenceId="NETWORLDSPORTS_ORDER_STATUS_LOG_NEW_STATUS" indexType="btree">
+            <column name="new_status"/>
+        </index>
+    </table>
+
+</schema>

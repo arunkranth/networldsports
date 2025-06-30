@@ -1,0 +1,36 @@
+{
+    "name": "networldsports/module-custom-order-processing",
+    "description": "Custom Order Processing module for NetworldSports",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "NetworldSports",
+            "email": "support@networldsports.com"
+        }
+    ],
+    "require": {
+        "php": "~7.4.0||~8.1.0||~8.2.0",
+        "magento/framework": "*",
+        "magento/module-sales": "*",
+        "magento/module-backend": "*",
+        "magento/module-ui": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "NetworldSports\\CustomOrderProcessing\\": ""
+        }
+    },
+    "extra": {
+        "map": [
+            [
+                "*",
+                "NetworldSports/CustomOrderProcessing"
+            ]
+        ]
+    }
+}
