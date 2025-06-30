@@ -37,18 +37,26 @@ bin/magento cache:flush
 networldsports_custom_order_status: Stores custom status definitions
 
 status_id - Primary key
+
 status_name - The custom status name
+
 is_enabled - Enable/disable flag
+
 created_at - Creation timestamp
+
 updated_at - Last update timestamp
 
 
 networldsports_order_status_log: Tracks all status changes
 
 log_id - Primary key
+
 order_id - Foreign key to sales_order
+
 old_status - Previous status
+
 new_status - New status
+
 changed_at - Change timestamp
 
 
@@ -56,23 +64,32 @@ changed_at - Change timestamp
 ## Key Components
 
 Repository Pattern: Clean data access layer with interfaces
+
 Service Contracts: API interfaces for external integrations
+
 Plugin System: Extends core functionality without modifying code
+
 Observer Pattern: Reacts to order status changes
+
 ViewModel: Separates presentation logic from blocks
 
 ## Design Decisions
 
 Fallback Mechanism: Orders revert to default state status when custom status is deleted
+
 Cache Invalidation: Automatic cache clearing on status changes
+
 Permission Granularity: Separate ACL for different operations
 
 ## Usage
 ### Admin Panel
 
 Navigate to Sales > Custom Order Processing > Manage Custom Statuses
+
 Create new statuses with descriptive names
+
 Enable/disable statuses as needed
+
 View status change logs for audit trail
 
 ##REST API
@@ -97,9 +114,13 @@ curl -X PUT http://<magento-url>/rest/V1/customorder/status \
 ## ACL Permissions
 
 NetworldSports_CustomOrderProcessing::main - Main module access
+
 NetworldSports_CustomOrderProcessing::status_add - Add/Edit Order Statuses
+
 NetworldSports_CustomOrderProcessing::status_delete - Delete Order statuses
+
 NetworldSports_CustomOrderProcessing::status_enable - Enable/Disable Orders statuses
+
 NetworldSports_CustomOrderProcessing::log - View Order Status Change logs
 
 ## Testing
@@ -114,18 +135,25 @@ vendor/bin/phpunit -c dev/tests/integration/phpunit.xml.dist app/code/NetworldSp
 ##Performance Considerations
 
 Implements IdentityInterface for efficient cache management
+
 Indexed database columns for quick lookups
+
 Optimized queries using collection processors
 
 ## Security
 
 Input validation for all user inputs
+
 ACL permissions for all operations
+
 XSS protection in templates
+
 CSRF protection on forms
 
 ## Compatibility
 
 Magento 2.4.x
+
 PHP 7.4, 8.1, 8.2
+
 Compatible with both Luma and Hyvä themes
