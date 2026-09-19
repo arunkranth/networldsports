@@ -1,3 +1,0 @@
-Temporary ciphertext-only transfer links:
-https://meshmerce-poc-evidence-text-575411322722.asia-south2.run.app/bundle.enc.b64
-https://meshmerce-poc-evidence-text-575411322722.asia-south2.run.app/key.enc.b64
