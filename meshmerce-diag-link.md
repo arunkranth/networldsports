@@ -1,3 +1,3 @@
 # Temporary Meshmerce diagnostic
 
-[Diagnostic JSON](https://sharenotes.dev/api/v1/notes/mm-u2net-v2-diag-0919)
+[Overlay diagnostic](https://sharenotes.dev/mm-overlay-diag-0919)
